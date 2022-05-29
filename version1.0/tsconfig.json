@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "declaration": false,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "lib": ["es2017", "dom"],
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "outDir": "../build",
+        "sourceMap": true,
+        "target": "es2016",
+        "typeRoots": [
+            "../node_modules/@types"
+        ]
+    },
+    "include": [
+        "**/*.ts"
+    ],
+    "exclude": [
+        "../node_modules",
+        "../*.js"
+    ]
+}

@@ -138,24 +138,24 @@ export class Execute extends PipelineStage {
       const gteuResult = (~sltuResult) & 1;
 
       switch (decoded.funct3) {
-        case ALUOperation.ADD: this.aluResult.value = addResult; break;
-        case ALUOperation.SLL: this.aluResult.value = sllResult; break;
-        case ALUOperation.SLT: this.aluResult.value = sltResult; break;
-        case ALUOperation.SLTU: this.aluResult.value = sltuResult; break;
-        case ALUOperation.XOR: this.aluResult.value = xorResult; break;
-        case ALUOperation.SR: this.aluResult.value = srResult; break;
-        case ALUOperation.OR: this.aluResult.value = orResult; break;
-        case ALUOperation.AND: this.aluResult.value = andResult; break;
+        case ALUOperation.ADD: this.aluResult.value = addResult;    console.log("ADD"); break;
+        case ALUOperation.SLL: this.aluResult.value = sllResult;    console.log("SLL"); break;
+        case ALUOperation.SLT: this.aluResult.value = sltResult;    console.log("SLT");break;
+        case ALUOperation.SLTU: this.aluResult.value = sltuResult;  console.log("SLTU");break;
+        case ALUOperation.XOR: this.aluResult.value = xorResult;    console.log("XOR");break;
+        case ALUOperation.SR: this.aluResult.value = srResult;      console.log("SR");break;
+        case ALUOperation.OR: this.aluResult.value = orResult;      console.log("OR");break;
+        case ALUOperation.AND: this.aluResult.value = andResult;    console.log("AND"); break;
       }
 
       let branchConditionMet = 0;
       switch (decoded.funct3) {
-        case BranchType.BEQ: branchConditionMet = eqResult; break;
-        case BranchType.BNE: branchConditionMet = neqResult; break;
-        case BranchType.BLT: branchConditionMet = sltResult; break;
-        case BranchType.BLTU: branchConditionMet = sltuResult; break;
-        case BranchType.BGE: branchConditionMet = gteResult; break;
-        case BranchType.BGEU: branchConditionMet = gteuResult; break;
+        case BranchType.BEQ: branchConditionMet = eqResult;     console.log("BEQ"); break;
+        case BranchType.BNE: branchConditionMet = neqResult;    console.log("BNE"); break;
+        case BranchType.BLT: branchConditionMet = sltResult;    console.log("BLT"); break;
+        case BranchType.BLTU: branchConditionMet = sltuResult;  console.log("BLTU"); break;
+        case BranchType.BGE: branchConditionMet = gteResult;    console.log("BGE");break;
+        case BranchType.BGEU: branchConditionMet = gteuResult;  console.log("BGEU"); break;
       }
       this.branchValid.value = decoded.isJump | (decoded.isBranch & branchConditionMet);
     }

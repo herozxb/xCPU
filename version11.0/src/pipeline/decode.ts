@@ -65,7 +65,11 @@ export class Decode extends PipelineStage {
       this.pcPlus4.value = pcPlus4;
 
       this.instruction.value = instruction;
+      console.log("=============instruction[start]==========");
+      console.log(this.instruction.value);
       this.opcode.value = this.instruction.nextValue & 0x7f;
+      console.log(this.opcode.value);
+      console.log("=============instruction[end]==========");
       this.rd.value = (this.instruction.nextValue >> 7) & 0x1f;
       this.funct3.value = (this.instruction.nextValue >> 12) & 0x07;
       this.funct7.value = (this.instruction.nextValue >>> 25) & 0x7f;
@@ -152,6 +156,8 @@ export class Decode extends PipelineStage {
         // no op
       } else {
         console.log(`pc=0x${toHexString(this.pc.nextValue), 8}`);
+        console.log(`Instruction=0x${toHexString(this.instruction.value), 8}`);
+        
         throw new Error('Not implemented');
       }
     } else {

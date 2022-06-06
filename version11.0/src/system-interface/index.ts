@@ -11,10 +11,10 @@ export interface MMIODevice {
 }
 
 export enum MemoryMap {
-  ProgramROMStart = 0x10000000,
+  ProgramROMStart = 0x00000000,
   ProgramROMEnd   = 0x1fffffff,
   RAMStart        = 0x20000000,
-  RAMEnd          = 0x2fffffff,
+  RAMEnd          = 0x8fffffff,
 }
 
 export class SystemInterface implements MMIODevice {

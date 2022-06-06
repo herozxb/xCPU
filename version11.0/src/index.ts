@@ -15,6 +15,8 @@ import {debugObj} from './debug';
 import * as fs from 'fs/promises';
 import * as path from 'path';
 
+import { parse  } from 'elf-tools';
+
 
 import { ELFDebugInfo, getELFDebugInfo } from './debug/elf';
 import { Trap } from './trap';
@@ -240,15 +242,20 @@ class RV32ISystem {
 const main = async () => {
   const rv = new RV32ISystem();
 
-  const file = await fs.readFile(path.join(__dirname, '..', 'system-code', 'build', 'main.bin'));
-  const debugInfo = await getELFDebugInfo(path.join(__dirname, '..', 'system-code', 'build', 'main.elf'));
+  const file = await fs.readFile(path.join(__dirname, '..', 'system-code', 'build', 'add.bin'));
+  const debugInfo = await getELFDebugInfo(path.join(__dirname, '..', 'system-code', 'build', 'add.elf'));
   const program = new Uint32Array(file.buffer);
 
+  const file_elf = await fs.readFile(path.join(__dirname, '..', 'system-code', 'riscv-tests', 'isa', 'rv32ui-p-add'));
+  const elf = parse(file_elf);
+  const file_text = elf.sections[1]["data"];
+  const program_elf = new Uint32Array(elf.sections[1]["data"].buffer);
+
   debugObj.level = 'error';
-  rv.loadDebugInfo(debugInfo);
+  //rv.loadDebugInfo(debugInfo);
   rv.rom.load(program);
 
-  rv.addBreakpointByName('main');
+  //rv.addBreakpointByName('reset_vector');
   // rv.setStepMode(true);
 
   while (true) {

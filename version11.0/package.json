@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "elf-tools": "^1.1.2",
+    "elfinfo": "^0.4.0-beta",
     "ts-node": "^10.2.1",
     "typescript": "^4.6.3"
   },
